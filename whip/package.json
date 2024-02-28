@@ -1,0 +1,13 @@
+{
+    "name": "whip-server",
+    "version": "1.0.0",
+    "description": "Example WHIP server using Express.js",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "express-ws": "^4.0.0"
+    }
+  }

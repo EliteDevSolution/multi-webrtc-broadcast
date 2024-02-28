@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OBS Studio WHIP Server</title>
+  </head>
+  <body>
+    <h1>OBS Studio WHIP Server</h1>
+    
+    <script>
+      const whip = new WHIP();
+
+      // Handle incoming WHIP messages
+      whip.onMessage((message) => {
+        console.log("Received message:", message);
+        // Handle the message as per your requirements
+      });
+
+      // Connect to the WHIP server
+      whip.connect("ws://localhost:3000/whip");
+    </script>
+  </body>
+</html>
