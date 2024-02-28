@@ -1,10 +1,10 @@
 {
   "socketURL": "/",
   "dirPath": "",
-  "homePage": "/demos/index.html",
+  "homePage": "/html/index.html",
   "socketMessageEvent": "RTCMultiConnection-Message",
   "socketCustomEvent": "RTCMultiConnection-Custom-Message",
-  "port": "9001",
+  "port": "80",
   "enableLogs": "false",
   "autoRebootServerOnFailure": "false",
   "isUseHTTPs": "false",

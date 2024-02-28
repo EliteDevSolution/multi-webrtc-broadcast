@@ -85,7 +85,7 @@ function serverHandler(request, response) {
         }
 
         var matched = false;
-        ['/demos/', '/dev/', '/dist/', '/socket.io/', '/node_modules/canvas-designer/', '/admin/', '/source/'].forEach(function(item) {
+        ['/html/', '/dev/', '/dist/', '/socket.io/', '/node_modules/canvas-designer/', '/admin/', '/source/'].forEach(function(item) {
             if (filename.indexOf(resolveURL(item)) !== -1) {
                 matched = true;
             }
@@ -126,12 +126,12 @@ function serverHandler(request, response) {
         try {
             stats = fs.lstatSync(filename);
 
-            if (filename.search(/demos/g) === -1 && filename.search(/admin/g) === -1 && stats.isDirectory() && config.homePage === '/demos/index.html') {
+            if (filename.search(/html/g) === -1 && filename.search(/admin/g) === -1 && stats.isDirectory() && config.homePage === '/html/index.html') {
                 if (response.redirect) {
-                    response.redirect('/demos/');
+                    response.redirect('/html/');
                 } else {
                     response.writeHead(301, {
-                        'Location': '/demos/'
+                        'Location': '/html/'
                     });
                 }
                 response.end();
@@ -152,22 +152,22 @@ function serverHandler(request, response) {
                     'Content-Type': 'text/html'
                 });
 
-                if (filename.indexOf(resolveURL('/demos/MultiRTC/')) !== -1) {
-                    filename = filename.replace(resolveURL('/demos/MultiRTC/'), '');
-                    filename += resolveURL('/demos/MultiRTC/index.html');
+                if (filename.indexOf(resolveURL('/html/MultiRTC/')) !== -1) {
+                    filename = filename.replace(resolveURL('/html/MultiRTC/'), '');
+                    filename += resolveURL('/html/MultiRTC/index.html');
                 } else if (filename.indexOf(resolveURL('/admin/')) !== -1) {
                     filename = filename.replace(resolveURL('/admin/'), '');
                     filename += resolveURL('/admin/index.html');
-                } else if (filename.indexOf(resolveURL('/demos/dashboard/')) !== -1) {
-                    filename = filename.replace(resolveURL('/demos/dashboard/'), '');
-                    filename += resolveURL('/demos/dashboard/index.html');
-                } else if (filename.indexOf(resolveURL('/demos/video-conference/')) !== -1) {
-                    filename = filename.replace(resolveURL('/demos/video-conference/'), '');
-                    filename += resolveURL('/demos/video-conference/index.html');
-                } else if (filename.indexOf(resolveURL('/demos')) !== -1) {
-                    filename = filename.replace(resolveURL('/demos/'), '');
-                    filename = filename.replace(resolveURL('/demos'), '');
-                    filename += resolveURL('/demos/index.html');
+                } else if (filename.indexOf(resolveURL('/html/dashboard/')) !== -1) {
+                    filename = filename.replace(resolveURL('/html/dashboard/'), '');
+                    filename += resolveURL('/html/dashboard/index.html');
+                } else if (filename.indexOf(resolveURL('/html/video-conference/')) !== -1) {
+                    filename = filename.replace(resolveURL('/html/video-conference/'), '');
+                    filename += resolveURL('/html/video-conference/index.html');
+                } else if (filename.indexOf(resolveURL('/html')) !== -1) {
+                    filename = filename.replace(resolveURL('/html/'), '');
+                    filename = filename.replace(resolveURL('/html'), '');
+                    filename += resolveURL('/html/index.html');
                 } else {
                     filename += resolveURL(config.homePage);
                 }
@@ -223,8 +223,6 @@ var httpApp;
 if (isUseHTTPs) {
     httpServer = require('https');
 
-    // See how to use a valid certificate:
-    // https://github.com/muaz-khan/WebRTC-Experiment/issues/62
     var options = {
         key: null,
         cert: null,

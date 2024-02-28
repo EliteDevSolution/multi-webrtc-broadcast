@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Broadcast Example</title>
+  <script src="/html/js/RTCMultiConnection.js"></script>
+<script src="/html/js/socket.io.min.js"></script>
+</head>
+<body>
+  <video id="remoteVideo"></video>
+
+  <script>
+    // Create a new RTCMultiConnection object
+    var connection = new RTCMultiConnection();
+
+    // Set the signaling server URL
+    //connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+    // Disable camera and microphone
+    connection.mediaConstraints = {
+      video: true,
+      audio: false
+    };
+
+
+    connection.session = {
+        data: true,
+        video: true,
+    };
+
+    connection.openOrJoin('broadcast-room');
+     // Broadcast a local MP4 video file
+    var localVideo = document.createElement('video');
+    localVideo.src = '/html/media/test.mp4';
+    localVideo.addEventListener('loadedmetadata', function() {
+      connection.streamEvents.selectAll('local').forEach(function(streamEvent) {
+        console.log('sdkjfhsd')
+        streamEvent.mediaElement = localVideo;
+        connection.renegotiate(streamEvent.stream);
+      });
+    });
+  </script>
+</body>
+</html>
