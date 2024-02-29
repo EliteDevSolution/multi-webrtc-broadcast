@@ -25,13 +25,13 @@ services:
       - sfu
       - sfu-edge
     environment:
-      - PORT=8200
-      - EXT_PORT=8200
+      - PORT=443
+      - EXT_PORT=433
       - ORIGIN_SFU_URL=http://sfu:8280/conferences/
       - SFU_API_KEY=dev
       - EDGE_LIST_CONFIG=/etc/edge-list-config.json
     ports:
-      - "8200:8200/tcp"
+      - "443:443/tcp"
     volumes:
       - ./dev-edge-list-config.json:/etc/edge-list-config.json
     extra_hosts:
